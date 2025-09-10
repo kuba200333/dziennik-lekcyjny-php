@@ -2,37 +2,40 @@
 
 Projekt edukacyjny w pełni funkcjonalnego dziennika elektronicznego, tworzony od podstaw w PHP z wykorzystaniem bazy danych MySQL.
 
+## Podgląd Aplikacji
+
+**Ekran Logowania**
+![Ekran Logowania](https://github.com/kuba200333/dziennik-lekcyjny-php/blob/main/_screenshots/ekran_logowania.png?raw=true)
+
+**Główny Panel Nauczyciela**
+![Panel Nauczyciela](https://github.com/kuba200333/dziennik-lekcyjny-php/blob/main/_screenshots/glowny_ekran.png?raw=true)
+
+**Podgląd Ocen**
+![Podgląd Ocen](https://github.com/kuba200333/dziennik-lekcyjny-php/blob/main/_screenshots/podglad_ocen.png?raw=true)
+
 ## Status Projektu
 Projekt jest w trakcie aktywnego rozwoju.
 
-## Główne Funkcjonalności
-* **System Użytkowników i Ról:** Podział na uczniów, nauczycieli, dyrektorów i administratorów.
-* **Bezpieczne Logowanie:** Uwierzytelnianie oparte na sesjach z hashowaniem haseł.
-* **Ustawienia Globalne:**
-    * Zarządzanie latami szkolnymi.
-    * Definiowanie ram czasowych dla semestrów.
-* **Zarządzanie Strukturą Szkoły:**
-    * Panel do zarządzania klasami w danym roku szkolnym.
-    * Panel do zarządzania przedmiotami.
-    * Panel do zarządzania grupami (wewnątrzklasowymi i międzyklasowymi).
-    * Panel do zarządzania przydziałami (kto, kogo, czego uczy).
-* **Ocenianie:**
-    * Zaawansowany arkusz ocen dla nauczycieli i administratorów.
-    * Seryjne wstawianie ocen z automatycznym wykrywaniem semestru.
-    * Edycja i usuwanie ocen z weryfikacją uprawnień.
-    * System kategorii ocen (systemowe i własne nauczyciela).
-* **Plan Lekcji i Frekwencja:**
-    * Moduł do tworzenia i zarządzania planem lekcji.
-    * Moduł do sprawdzania obecności i wpisywania tematów lekcji.
-
-## Technologie
-* **Backend:** PHP
+## Technologie i Wymagania
+* **Backend:** PHP (wersja 7.4 lub nowsza)
 * **Baza Danych:** MySQL (MariaDB)
 * **Frontend:** HTML, CSS, JavaScript (bez frameworków)
+
+## Główne Funkcjonalności
+* **System Użytkowników i Ról:** Podział na uczniów, nauczycieli, dyrektorów i administratorów.
+* **Bezpieczne Logowanie:** Uwierzytelnianie oparte na sesjach z hashowaniem haseł (`password_hash`).
+* **Ustawienia Globalne:** Zarządzanie latami szkolnymi i ramami czasowymi semestrów.
+* **Zarządzanie Strukturą Szkoły:** Panele do zarządzania klasami, grupami, przedmiotami i przydziałami nauczycieli.
+* **Ocenianie:** Zaawansowany, interaktywny arkusz ocen z obliczaniem średnich ważonych oraz seryjnym dodawaniem i edycją ocen.
+* **Plan Lekcji i Frekwencja:** Moduły do tworzenia planu i realizacji programu nauczania.
 
 ## Instalacja i Uruchomienie
 1.  Sklonuj repozytorium na swój komputer.
 2.  Zaimportuj schemat bazy danych (plik `.sql`) do swojego serwera MySQL (np. przez phpMyAdmin).
-3.  W głównym folderze projektu stwórz plik `connect.php` na podstawie pliku `connect.php.example` (plik-wzór, który należy dodać) i uzupełnij go danymi dostępowymi do Twojej bazy danych. Plik `connect.php` jest ignorowany przez Git ze względów bezpieczeństwa.
-4.  Umieść cały folder projektu w środowisku serwera WWW (np. w folderze `htdocs` w XAMPP).
-5.  Uruchom projekt w przeglądarce.
+3.  W głównym folderze projektu stwórz plik `connect.php` na podstawie pliku `connect.php.example`.
+4.  Uzupełnij `connect.php` swoimi danymi dostępowymi do bazy danych.
+5.  Umieść cały folder projektu w środowisku serwera WWW (np. w folderze `htdocs` w XAMPP).
+6.  Uruchom projekt w przeglądarce.
+
+---
+*Uwaga: Nazwy plików i zmiennych w kodzie są w języku polskim, co jest świadomą decyzją podjętą na potrzeby projektu.*

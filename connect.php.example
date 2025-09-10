@@ -1,0 +1,7 @@
+<?php
+    // Dane do połączenia z Twoją lokalną bazą danych XAMPP
+    $host = ""; // nazwa hosta
+    $db_user = ""; //  nazwa_uzytkownika
+    $db_password = ""; //  twoje_haslo
+    $db_name = ""; // nazwa bazy danych 
+?>
