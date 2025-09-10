@@ -1,0 +1,13 @@
+# Plik konfiguracyjny z danymi do bazy danych - NIGDY go nie wysyłaj!
+connect.php
+
+# Pliki i foldery generowane przez edytory kodu
+.vscode/
+.idea/
+
+# Pliki tymczasowe i logi
+*.log
+temp/
+
+# Inne pliki, których nie chcesz w repozytorium
+# np. pliki z hasłami do emaila, klucze API itp.

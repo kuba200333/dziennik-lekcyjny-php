@@ -1,0 +1,295 @@
+/* ==========================================================================
+   1. Ustawienia Globalne i Nowa Paleta Kolorów
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+    --kolor-tlo: #f4f7f6; /* Jasnoszare tło */
+    --kolor-powierzchnia: #ffffff; /* Białe tło dla kart i menu */
+    --kolor-glowny-ciemny: #2c3e50; /* Ciemny niebiesko-szary dla menu i tekstu */
+    --kolor-akcent: #3498db; /* Przyjemny niebieski jako akcent */
+    --kolor-akcent-hover: #2980b9; /* Ciemniejszy niebieski po najechaniu */
+    --kolor-tekst-glowny: #34495e; /* Ciemny szary dla tekstu */
+    --kolor-tekst-drugi: #7f8c8d; /* Jaśniejszy szary dla drugorzędnego tekstu */
+    --kolor-obramowanie: #ecf0f1; /* Bardzo jasny szary dla obramowań */
+    --cień-karty: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --kolor-tekst-jasny: #ffffff;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--kolor-tlo);
+    color: var(--kolor-tekst-glowny);
+    font-size: 16px;
+}
+
+/* ==========================================================================
+   2. Nowy Układ Strony (Sidebar + Content)
+   ========================================================================== */
+
+#kontener {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 260px 1fr; /* Szerokość menu bocznego i reszta */
+    grid-template-rows: 70px 1fr 50px; /* Wysokość nagłówka, treści i stopki */
+    grid-template-areas:
+        "menu naglowek"
+        "menu glowny"
+        "menu stopka";
+}
+
+/* --- MENU BOCZNE --- */
+#menu {
+    grid-area: menu;
+    background-color: var(--kolor-glowny-ciemny);
+    color: var(--kolor-tekst-jasny);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#logo-dziennika {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--kolor-tekst-jasny);
+}
+
+#menu-nawigacja {
+    margin-top: 30px;
+    list-style-type: none;
+}
+
+#menu-nawigacja a {
+    display: block;
+    color: var(--kolor-tekst-jasny);
+    padding: 15px 10px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#menu-nawigacja a:hover, #menu-nawigacja a.aktywny {
+    background-color: var(--kolor-akcent);
+    color: var(--kolor-tekst-jasny);
+}
+
+/* --- NAGŁÓWEK --- */
+#naglowek {
+    grid-area: naglowek;
+    background-color: var(--kolor-powierzchnia);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 30px;
+    border-bottom: 1px solid var(--kolor-obramowanie);
+}
+
+#info-uzytkownika {
+    text-align: right;
+}
+
+#info-uzytkownika .rola {
+    font-size: 0.8rem;
+    color: var(--kolor-tekst-drugi);
+}
+
+#wyloguj-link {
+    margin-left: 20px;
+    color: var(--kolor-akcent);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+#wyloguj-link:hover {
+    color: var(--kolor-akcent-hover);
+}
+
+
+/* --- GŁÓWNA TREŚĆ --- */
+#glowny {
+    grid-area: glowny;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.karta {
+    background-color: var(--kolor-powierzchnia);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: var(--cień-karty);
+}
+
+.karta h1, .karta h2 {
+    color: var(--kolor-glowny-ciemny);
+    border-bottom: 2px solid var(--kolor-akcent);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* --- STOPKA --- */
+#stopka {
+    grid-area: stopka;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--kolor-tekst-drugi);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--kolor-obramowanie);
+}
+
+
+/* ==========================================================================
+   3. Style dla Komponentów (Tabele, Formularze, Oceny)
+   ========================================================================== */
+
+/* Tabele */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--kolor-tekst-glowny);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--kolor-obramowanie);
+}
+
+th {
+    background-color: var(--kolor-tlo);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+/* Dodatkowa reguła dla linków-ocen, aby usunąć podkreślenie */
+td a[title] {
+    text-decoration: none;
+    vertical-align: middle; /* Lepsze wyrównanie w pionie */
+}
+
+/* ==========================================================================
+   4. Style dla Formularzy
+   ========================================================================== */
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid var(--kolor-obramowanie);
+    background-color: var(--kolor-tlo);
+    color: var(--kolor-tekst-glowny);
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease;
+}
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--kolor-akcent);
+}
+
+.przycisk, input[type="submit"] {
+    background-color: var(--kolor-akcent);
+    color: #ffffff; /* Zawsze biały tekst na przyciskach */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.przycisk:hover, input[type="submit"]:hover {
+    background-color: var(--kolor-akcent-hover);
+}
+
+/* --- Nowy styl dla panelu logowania --- */
+.logowanie {
+    max-width: 450px; /* Nieco mniejszy, bardziej kompaktowy */
+    margin: 100px auto; /* Centrowanie na środku strony */
+    padding: 30px;
+    background-color: var(--kolor-powierzchnia); /* Białe tło jak karty */
+    border-radius: 10px;
+    box-shadow: var(--cień-karty); /* Subtelny cień */
+    text-align: center; /* Centrowanie treści */
+}
+
+.logowanie h1 {
+    color: var(--kolor-glowny-ciemny);
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.logowanie p {
+    margin-bottom: 15px;
+    color: var(--kolor-tekst-glowny);
+}
+
+.logowanie a {
+    color: var(--kolor-akcent);
+    font-weight: 500;
+}
+
+.logowanie .komunikat {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f2dede; /* Czerwony dla błędu */
+    color: #a94442;
+    border: 1px solid #ebccd1;
+}
+
+/* Przycisk logowania na całą szerokość */
+.logowanie input[type="submit"] {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Oceny */
+span.ocena {
+    display: inline-block;
+    min-width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    padding: 0 6px;
+    margin: 3px;
+    font-weight: 600;
+    border-radius: 50%; /* Okrągłe oceny */
+    color: var(--kolor-tekst-jasny);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+span.ocena:hover {
+    transform: scale(1.1);
+}
+
+/* Domyślne kolory kategorii można zdefiniować tutaj */
+.spr { background-color: #e74c3c; } /* Czerwony */
+.kartk { background-color: #9b59b6; } /* Fioletowy */
+.odp_ust { background-color: #f1c40f; } /* Żółty */
+.zad_dom { background-color: #1abc9c; } /* Turkusowy */
+.akt { background-color: #3498db; } /* Niebieski */
+/* ...dodaj inne kolory dla kategorii... */
