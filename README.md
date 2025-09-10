@@ -7,8 +7,8 @@ Projekt edukacyjny w pełni funkcjonalnego dziennika elektronicznego, tworzony o
 **Ekran Logowania**
 ![Ekran Logowania](https://github.com/kuba200333/dziennik-lekcyjny-php/blob/main/_screenshots/ekran_logowania.png?raw=true)
 
-**Główny Panel Nauczyciela**
-![Panel Nauczyciela](https://github.com/kuba200333/dziennik-lekcyjny-php/blob/main/_screenshots/glowny_ekran.png?raw=true)
+**Główny Panel Admina**
+![Panel Admina](https://github.com/kuba200333/dziennik-lekcyjny-php/blob/main/_screenshots/glowny_ekran.png?raw=true)
 
 **Podgląd Ocen**
 ![Podgląd Ocen](https://github.com/kuba200333/dziennik-lekcyjny-php/blob/main/_screenshots/podglad_ocen.png?raw=true)
