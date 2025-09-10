@@ -36,7 +36,7 @@ $aktywnaStrona = basename($_SERVER['PHP_SELF']);
                 echo '<li><a href="ustawienia_globalne.php" class="' . ($aktywnaStrona == 'ustawienia_globalne.php' ? 'aktywny' : '') . '">Ustawienia Globalne</a></li>';
                 echo '<li><a href="zarzadzaj_grupami.php" class="' . ($aktywnaStrona == 'zarzadzaj_grupami.php' ? 'aktywny' : '') . '">Zarządzaj grupami</a></li>';
                 echo '<li><a href="podglad_ocen.php" class="' . ($aktywnaStrona == 'podglad_ocen.php' ? 'aktywny' : '') . '">Podgląd Ocen</a></li>';
-                echo '<li><a href="uczniowie_masowo.php" class="' . ($aktywnaStrona == 'uczniowie_masowo.php' ? 'aktywny' : '') . '">Dodawanie masowe uczniów</a></li>';
+                echo '<li><a href="zarzadzaj_dniami_wolnymi.php" class="' . ($aktywnaStrona == 'zarzadzaj_dniami_wolnymi.php' ? 'aktywny' : '') . '">Zarządzaj dniami wolnymi</a></li>';
                 echo '<li><a href="zarzadzaj_planem.php" class="' . ($aktywnaStrona == 'zarzadzaj_planem.php' ? 'aktywny' : '') . '">Zarządzaj planem lekcji</a></li>';
                 echo '<li><a href="zarzadzaj_zastepstwami.php" class="' . ($aktywnaStrona == 'zarzadzaj_zastepstwami.php' ? 'aktywny' : '') . '">Zarządzaj zastępstwami</a></li>';
                 echo '<li><a href="plan.php" class="' . ($aktywnaStrona == 'plan.php' ? 'aktywny' : '') . '">Plan lekcji</a></li>';

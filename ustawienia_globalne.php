@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "INSERT INTO semestry (rok_szkolny_id, numer_semestru, data_od, data_do) VALUES (?, 1, ?, ?), (?, 2, ?, ?)
                 ON DUPLICATE KEY UPDATE data_od = VALUES(data_od), data_do = VALUES(data_do)";
         $stmt = $polaczenie->prepare($sql);
-        $stmt->bind_param("isssis", $aktywny_rok_id, $semestr1_od, $semestr1_do, $aktywny_rok_id, $semestr2_od, $semestr2_do);
+        $stmt->bind_param("ississ", $aktywny_rok_id, $semestr1_od, $semestr1_do, $aktywny_rok_id, $semestr2_od, $semestr2_do);
         $stmt->execute();
         $komunikat = "Zapisano daty trwania semestrów.";
     }

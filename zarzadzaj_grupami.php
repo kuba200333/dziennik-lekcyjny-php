@@ -66,7 +66,7 @@ $polaczenie->close();
                                 <td>
                                     <a href="zarzadzaj_nauczaniem_grupy.php?grupa_id=<?php echo $grupa['id']; ?>" class="przycisk">Nauczanie</a>
                                     <a href="zarzadzaj_skladem_grupy.php?id=<?php echo $grupa['id']; ?>" class="przycisk">Zarządzaj składem</a>
-                                    <a href="#" class="przycisk">Edytuj</a>
+                                    <a href="edytuj_grupe.php?id=<?php echo $grupa['id']; ?>" class="przycisk">Edytuj</a>
                                     <button class="przycisk przycisk-usun">Usuń</button>
                                 </td>
                             </tr>
