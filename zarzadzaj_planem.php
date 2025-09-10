@@ -35,7 +35,7 @@ if ($wybrana_jednostka) {
     $stmt->execute();
     $wynik = $stmt->get_result();
     while($lekcja = $wynik->fetch_assoc()) {
-        $plan_lekcji[$lekcja['dzien_tygodnia']][$lekcja['nr_lekcji']] = $lekcja;
+        $plan_lekcji[$lekcja['dzien_tygodnia']][$lekcja['nr_lekcji']][] = $lekcja;
     }
 }
 ?>
@@ -73,6 +73,18 @@ if ($wybrana_jednostka) {
         color: white;
         opacity: 0.8;
     }
+
+    .lekcja-blok { 
+        border-bottom: 1px dashed #ccc; 
+        padding-bottom: 10px; 
+        margin-bottom: 10px; 
+    }
+
+    .lekcja-blok:last-child { 
+        border-bottom: none; 
+        margin-bottom: 0; 
+        padding-bottom: 0; 
+    }
 </style>
 </head>
 <body>
@@ -106,24 +118,27 @@ if ($wybrana_jednostka) {
                         <td><b><?php echo $nr_lekcji; ?></b></td>
                         <?php for ($dzien = 1; $dzien <= 5; $dzien++): ?>
                             <td class="plan-komorka">
-                                <?php if (isset($plan_lekcji[$dzien][$nr_lekcji])): 
-                                    $lekcja = $plan_lekcji[$dzien][$nr_lekcji];
-                                ?>
-                                    <b><?php echo htmlspecialchars($lekcja['nazwa_przedmiotu']); ?></b><br>
-                                    <small><?php echo htmlspecialchars($lekcja['nauczyciel']); ?></small><br>
-                                    <small>s. <?php echo htmlspecialchars($lekcja['sala']); ?></small><br>
-                                    <small style="color: #7f8c8d; font-size: 0.75rem;"><?php echo htmlspecialchars($lekcja['data_od'] . ' - ' . $lekcja['data_do']); ?></small>
-                                    <div class="plan-akcje">
-                                        <a href="edytuj_lekcje.php?id=<?php echo $lekcja['id']; ?>" class="przycisk">Edytuj</a>
-                                        <form action="usun_lekcje.php" method="post" onsubmit="return confirm('Czy na pewno chcesz usunąć tę lekcję z planu?');">
-                                            <input type="hidden" name="id_lekcji" value="<?php echo $lekcja['id']; ?>">
-                                            <input type="hidden" name="redirect_jednostka" value="<?php echo $wybrana_jednostka; ?>">
-                                            <button type="submit" class="przycisk przycisk-usun">Usuń</button>
-                                        </form>
+                                <?php if (isset($plan_lekcji[$dzien][$nr_lekcji])): ?>
+                                    <?php foreach ($plan_lekcji[$dzien][$nr_lekcji] as $lekcja): ?>
+                                    <div class="lekcja-blok">
+                                        <b><?php echo htmlspecialchars($lekcja['nazwa_przedmiotu']); ?></b><br>
+                                        <small><?php echo htmlspecialchars($lekcja['nauczyciel']); ?></small><br>
+                                        <small>s. <?php echo htmlspecialchars($lekcja['sala']); ?></small><br>
+                                        <small style="color: #7f8c8d; font-size: 0.75rem;"><?php echo htmlspecialchars($lekcja['data_od'] . ' - ' . $lekcja['data_do']); ?></small>
+                                        <div class="plan-akcje">
+                                            <a href="edytuj_lekcje.php?id=<?php echo $lekcja['id']; ?>" class="przycisk">Edytuj</a>
+                                            <form action="usun_lekcje.php" method="post" onsubmit="return confirm('Czy na pewno chcesz usunąć tę lekcję z planu?');">
+                                                <input type="hidden" name="id_lekcji" value="<?php echo $lekcja['id']; ?>">
+                                                <input type="hidden" name="redirect_jednostka" value="<?php echo $wybrana_jednostka; ?>">
+                                                <button type="submit" class="przycisk przycisk-usun">Usuń</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                <?php else: ?>
-                                    <a href="dodaj_lekcje.php?jednostka=<?php echo $wybrana_jednostka; ?>&dzien=<?php echo $dzien; ?>&nr=<?php echo $nr_lekcji; ?>" class="przycisk">+ Dodaj</a>
+                                    <?php endforeach; ?>
                                 <?php endif; ?>
+
+                                <a href="dodaj_lekcje.php?jednostka=<?php echo $wybrana_jednostka; ?>&dzien=<?php echo $dzien; ?>&nr=<?php echo $nr_lekcji; ?>" class="przycisk">+ Dodaj</a>
+    
                             </td>
                         <?php endfor; ?>
                     </tr>

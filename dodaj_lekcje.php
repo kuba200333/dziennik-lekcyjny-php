@@ -28,9 +28,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 
-// Pobranie listy przydziałów (nauczania) w zależności od typu jednostki
+// Pobranie listy przydziałów (nauczania) wraz z domyślnymi salami
 $warunek_sql = ($typ === 'klasa') ? "n.klasa_id = ?" : "n.grupa_id = ?";
-$sql = "SELECT n.id, p.nazwa_przedmiotu, CONCAT(u.imie, ' ', u.nazwisko) AS nauczyciel 
+$sql = "SELECT 
+            n.id, 
+            p.nazwa_przedmiotu, 
+            n.nauczyciel_id,
+            CONCAT(u.imie, ' ', u.nazwisko) AS nauczyciel,
+            (SELECT sala FROM plan_lekcji pl WHERE pl.nauczanie_id = n.id GROUP BY sala ORDER BY COUNT(*) DESC LIMIT 1) AS domyslna_sala_przedmiot,
+            (SELECT sala FROM plan_lekcji pl JOIN nauczanie n2 ON pl.nauczanie_id = n2.id WHERE n2.nauczyciel_id = n.nauczyciel_id GROUP BY sala ORDER BY COUNT(*) DESC LIMIT 1) AS domyslna_sala_ogolna
         FROM nauczanie n
         JOIN przedmioty p ON n.przedmiot_id = p.id
         JOIN uzytkownicy u ON n.nauczyciel_id = u.id
@@ -89,15 +95,21 @@ if ($wynik->num_rows > 0) {
             <p>Dzień: <strong><?php echo ['Poniedziałek','Wtorek','Środa','Czwartek','Piątek'][$dzien_tygodnia-1]; ?></strong>, Lekcja: <strong><?php echo $nr_lekcji; ?></strong></p>
             <form action="" method="post" style="padding: 0;">
                 <label>Wybierz przydział (Przedmiot - Nauczyciel):</label>
-                <select name="nauczanie_id" required>
-                    <option value="">-- Wybierz --</option>
+                <select name="nauczanie_id" id="nauczanie_id" required>
+                    <option value="" data-sala-przedmiot="" data-sala-ogolna="">-- Wybierz --</option>
                     <?php foreach($przydzialy as $p): ?>
-                    <option value="<?php echo $p['id']; ?>"><?php echo htmlspecialchars($p['nazwa_przedmiotu'] . ' - ' . $p['nauczyciel']); ?></option>
+                    <option 
+                        value="<?php echo $p['id']; ?>"
+                        data-sala-przedmiot="<?php echo htmlspecialchars($p['domyslna_sala_przedmiot']); ?>"
+                        data-sala-ogolna="<?php echo htmlspecialchars($p['domyslna_sala_ogolna']); ?>"
+                    >
+                        <?php echo htmlspecialchars($p['nazwa_przedmiotu'] . ' - ' . $p['nauczyciel']); ?>
+                    </option>
                     <?php endforeach; ?>
                 </select>
 
                 <label>Sala lekcyjna:</label>
-                <input type="text" name="sala" required>
+                <input type="text" name="sala" id="sala" required>
 
                 <label>Lekcja obowiązuje od:</label>
                 <input type="date" name="data_od" value="<?php echo htmlspecialchars($data_start); ?>" required>
@@ -112,5 +124,21 @@ if ($wynik->num_rows > 0) {
     </main>
     <footer id="stopka">&copy; <?php echo date('Y'); ?> Nowy Dziennik Lekcyjny</footer>
 </div>
+<script>
+document.getElementById('nauczanie_id').addEventListener('change', function() {
+    const salaInput = document.getElementById('sala');
+    const selectedOption = this.options[this.selectedIndex];
+    const salaPrzedmiot = selectedOption.getAttribute('data-sala-przedmiot');
+    const salaOgolna = selectedOption.getAttribute('data-sala-ogolna');
+    
+    if (salaPrzedmiot) {
+        salaInput.value = salaPrzedmiot;
+    } else if (salaOgolna) {
+        salaInput.value = salaOgolna;
+    } else {
+        salaInput.value = '';
+    }
+});
+</script>
 </body>
 </html>
