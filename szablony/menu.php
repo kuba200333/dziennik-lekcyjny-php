@@ -40,11 +40,12 @@ $aktywnaStrona = basename($_SERVER['PHP_SELF']);
                 echo '<li><a href="zarzadzaj_planem.php" class="' . ($aktywnaStrona == 'zarzadzaj_planem.php' ? 'aktywny' : '') . '">Zarządzaj planem lekcji</a></li>';
                 echo '<li><a href="zarzadzaj_zastepstwami.php" class="' . ($aktywnaStrona == 'zarzadzaj_zastepstwami.php' ? 'aktywny' : '') . '">Zarządzaj zastępstwami</a></li>';
                 echo '<li><a href="plan.php" class="' . ($aktywnaStrona == 'plan.php' ? 'aktywny' : '') . '">Plan lekcji</a></li>';
-
+                echo '<li><a href="moje_nauczanie.php" class="' . ($aktywnaStrona == 'moje_nauczanie.php' ? 'aktywny' : '') . '">Nauczanie</a></li>';
                 break;
             case 'dyrektor':
                 echo '<li><a href="podglad_ocen.php" class="' . ($aktywnaStrona == 'podglad_ocen.php' ? 'aktywny' : '') . '">Podgląd Ocen</a></li>';
                 echo '<li><a href="zarzadzaj_kategoriami.php" class="' . ($aktywnaStrona == 'zarzadzaj_kategoriami.php' ? 'aktywny' : '') . '">Zarządzaj kategoriami ocen</a></li>';
+                echo '<li><a href="moje_nauczanie.php" class="' . ($aktywnaStrona == 'moje_nauczanie.php' ? 'aktywny' : '') . '">Nauczanie</a></li>';
 
                 break;
             case 'nauczyciel':
